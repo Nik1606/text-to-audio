@@ -1,3 +1,2 @@
-pyttsx3
-requests
-bs4
+gTTS
+playsound
