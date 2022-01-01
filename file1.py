@@ -1,20 +1,27 @@
-import pyttsx3
-import requests
-from bs4 import BeautifulSoup
-engine = pyttsx3.init('sapi5')
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[0].id)
-def speak(audio):
-  engine.say(audio)
-  engine.runAndWait()
-text = str(input("Paste article\n"))
-res = requests.get(text)
-soup = BeautifulSoup(res.text,'html.parser')
-articles = []
-for i in range(len(soup.select('.p'))):
-    article = soup.select('.p')[i].getText().strip()
-    articles.append(article)
-text = " ".join(articles)
-speak(text)
-# engine.save_to_file(text, 'test.mp3') ## If you want to save the speech as a audio file
-engine.runAndWait()
+# Import the gTTS module for text  
+# to speech conversion  
+from gtts import gTTS
+
+# This module is imported so that we can  
+# play the converted audio  
+
+from playsound import playsound
+
+# It is a text value that we want to convert to audio  
+text_val = 'All the best for your exam.'
+
+# Here are converting in English Language  
+language = 'en'
+
+# Passing the text and language to the engine,  
+# here we have assign slow=False. Which denotes  
+# the module that the transformed audio should  
+# have a high speed  
+obj = gTTS(text=text_val, lang=language, slow=False)
+
+#Here we are saving the transformed audio in a mp3 file named  
+# exam.mp3  
+obj.save("exam.mp3")
+
+# Play the exam.mp3 file  
+playsound("exam.mp3")
