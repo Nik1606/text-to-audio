@@ -8,7 +8,13 @@ f.close()
 
 ipread=open("userip.txt","r")
 content=ipread.read()
-print(content)
+print(type(content))
+
+language='en'
+obj=gTTS(text=content, lang=language, slow=False)
+obj.save("exam.mp3")
+
+playsound("exam.mp3")
 
 
 
